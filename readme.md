@@ -13,7 +13,7 @@ A TypeScript-first wrapper for Roblox's [PathfindingService](https://create.robl
 ## Installation
 
 ```sh
-npm install @rbxts/path
+npm i @rbxts/path
 ```
 
 ## Usage

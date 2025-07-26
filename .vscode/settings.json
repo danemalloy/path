@@ -10,5 +10,8 @@
 		"editor.formatOnSave": true
 	},
 	"eslint.run": "onType",
-	"eslint.format.enable": true
+	"eslint.format.enable": true,
+	"editor.indentSize": "tabSize",
+	"editor.autoIndentOnPaste": true,
+	"editor.tabSize": 2
 }

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A TypeScript wrapper for Roblox's PathfindingService",
   "main": "out/init.lua",
+  "repository": "github:danemalloy/rbxts-path",
   "scripts": {
     "build": "rbxtsc",
     "watch": "rbxtsc -w",

@@ -241,10 +241,10 @@ export class PathfindingUtils {
 		for (let i = 1; i < waypoints.size() - 1; i++) {
 			const prev = waypoints[i - 1].position;
 			const current = waypoints[i].position;
-			const next = waypoints[i + 1].position;
+			const nextWaypoint = waypoints[i + 1].position;
 
 			const dir1 = current.sub(prev).Unit;
-			const dir2 = next.sub(current).Unit;
+			const dir2 = nextWaypoint.sub(current).Unit;
 
 			const dot = dir1.Dot(dir2);
 			const angle = math.acos(math.clamp(dot, -1, 1));

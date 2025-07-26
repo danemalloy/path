@@ -2,27 +2,31 @@
   "name": "@rbxts/path",
   "version": "1.0.0",
   "description": "A TypeScript wrapper for Roblox's PathfindingService",
-  "main": "out/init.lua",
+  "keywords": [],
+  "homepage": "https://github.com/danemalloy/rbxts-path#readme",
+  "bugs": {
+    "url": "https://github.com/danemalloy/rbxts-path/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/danemalloy/rbxts-path.git"
   },
-  "scripts": {
-    "build": "rbxtsc",
-    "watch": "rbxtsc -w",
-    "prepublishOnly": "npm run build"
-  },
-  "keywords": [],
-  "author": "Dane Malloy",
   "license": "MIT",
+  "author": "Dane Malloy",
   "type": "commonjs",
+  "main": "out/init.lua",
   "types": "out/index.d.ts",
   "files": [
     "out",
     "!**/*.tsbuildinfo"
   ],
-  "publishConfig": {
-    "access": "public"
+  "scripts": {
+    "build": "rbxtsc",
+    "watch": "rbxtsc -w",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@rbxts/services": "^1.5.5"
   },
   "devDependencies": {
     "@rbxts/compiler-types": "^3.0.0-types.0",
@@ -37,7 +41,7 @@
     "roblox-ts": "^3.0.0",
     "typescript": "^5.8.3"
   },
-  "dependencies": {
-    "@rbxts/services": "^1.5.5"
+  "publishConfig": {
+    "access": "public"
   }
 }

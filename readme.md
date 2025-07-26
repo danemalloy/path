@@ -1,6 +1,6 @@
 # @rbxts/path
 
-A TypeScript-first wrapper for Roblox's [PathfindingService](https://create.roblox.com/docs/reference/engine/classes/PathfindingService) with async/await support, robust error handling, and a built-in Finite State Machine (FSM) for advanced path state management. Includes utilities for pathfinding, waypoint manipulation, and a `SmartPath` class with automatic retry and recovery.
+A TypeScript wrapper for Roblox's [PathfindingService](https://create.roblox.com/docs/reference/engine/classes/PathfindingService) with async/await support, robust error handling, and a built-in Finite State Machine (FSM) for advanced path state management. Includes utilities for pathfinding, waypoint manipulation, and a `SmartPath` class with automatic retry and recovery.
 
 ## Features
 

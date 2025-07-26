@@ -1,7 +1,7 @@
 {
   "name": "@rbxts/path",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.4.0",
+  "description": "A TypeScript wrapper for Roblox's PathfindingService",
   "main": "out/init.lua",
   "scripts": {
     "build": "rbxtsc",
@@ -9,8 +9,8 @@
     "prepublishOnly": "npm run build"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Dane Malloy",
+  "license": "MIT",
   "type": "commonjs",
   "types": "out/index.d.ts",
   "files": [

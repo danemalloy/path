@@ -216,8 +216,8 @@ export class Path {
 		let totalDistance = 0;
 		for (let i = 0; i < this.currentWaypoints.size() - 1; i++) {
 			const current = this.currentWaypoints[i].position;
-			const next = this.currentWaypoints[i + 1].position;
-			totalDistance += current.sub(next).Magnitude;
+			const nextWaypoint = this.currentWaypoints[i + 1].position;
+			totalDistance += current.sub(nextWaypoint).Magnitude;
 		}
 
 		return totalDistance;

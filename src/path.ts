@@ -55,17 +55,17 @@ export class Path {
 		});
 	}
 
-	// Get the current FSM state
+	// Gets the current FSM state
 	getState(): PathState {
 		return this.fsm.getCurrentState();
 	}
 
-	// Get the FSM instance for advanced control
+	// Gets the FSM instance for advanced control
 	getFSM(): PathFSM {
 		return this.fsm;
 	}
 
-	// Get the path options used for this path
+	// Gets the path options used for this path
 	getOptions(): Required<PathOptions> {
 		return { ...this.options };
 	}
@@ -124,7 +124,7 @@ export class Path {
 		this.followNextWaypoint(humanoid, waypointReachedDistance);
 	}
 
-	// Pause path following
+	// Pauses path following
 	pause(): void {
 		if (this.fsm.transitionTo(PathState.Paused)) {
 			this.cleanupConnections();
@@ -132,7 +132,7 @@ export class Path {
 	}
 
 	/**
-	 * Resume path following
+	 * Resumes path following
 	 * @param humanoid The humanoid to move
 	 * @param waypointReachedDistance Distance threshold for waypoint completion
 	 */
@@ -142,7 +142,7 @@ export class Path {
 		}
 	}
 
-	// Stop path following and reset to idle
+	// Stops path following and reset to idle
 	stop(): void {
 		this.cleanupConnections();
 		this.fsm.transitionTo(PathState.Idle);
@@ -194,7 +194,7 @@ export class Path {
 	}
 
 	/**
-	 * Get the waypoints of the computed path
+	 * Gets the waypoints of the computed path
 	 * @returns Array of waypoints, or undefined if no path exists
 	 */
 	getWaypoints(): Waypoint[] | undefined {
@@ -205,7 +205,7 @@ export class Path {
 	}
 
 	/**
-	 * Get the total length of the path in studs by calculating distance between waypoints
+	 * Gets the total length of the path in studs by calculating distance between waypoints
 	 * @returns Path length, or 0 if no path exists
 	 */
 	getDistance(): number {
@@ -223,27 +223,27 @@ export class Path {
 		return totalDistance;
 	}
 
-	// Get the current status of the path
+	// Gets the current status of the path
 	getStatus(): PathStatus {
 		return this.robloxPath.Status.Name as PathStatus;
 	}
 
-	// Check if the path computation was successful
+	// Checks if the path computation was successful
 	isSuccess(): boolean {
 		return this.robloxPath.Status === Enum.PathStatus.Success;
 	}
 
-	// Get the current waypoint index
+	// Gets the current waypoint index
 	getCurrentWaypointIndex(): number {
 		return this.currentWaypointIndex;
 	}
 
-	// Get the total number of waypoints
+	// Gets the total number of waypoints
 	getWaypointCount(): number {
 		return this.currentWaypoints.size();
 	}
 
-	// Destroy the internal path object and clean up connections
+	// Destroys the internal path object and clean up connections
 	destroy(): void {
 		this.stop();
 		if (this.pathBlockedConnection) {

@@ -121,27 +121,27 @@ export class SmartPath extends Path {
 		});
 	}
 
-	// Get the current retry attempt count
+	// Gets the current retry attempt count
 	getRetryAttempts(): number {
 		return this.retryAttempts;
 	}
 
-	// Get the maximum retry attempts allowed
+	// Gets the maximum retry attempts allowed
 	getMaxRetries(): number {
 		return this.smartOptions.maxRetries;
 	}
 
-	//  Check if retries are exhausted
+	// Checks if retries are exhausted
 	areRetriesExhausted(): boolean {
 		return this.retryAttempts >= this.smartOptions.maxRetries;
 	}
 
-	// Reset the retry counter
+	// Resets the retry counter
 	resetRetries(): void {
 		this.retryAttempts = 0;
 	}
 
-	// Get the smart path configuration
+	// Gets the smart path configuration
 	getSmartOptions(): Required<SmartPathOptions> {
 		return { ...this.smartOptions };
 	}

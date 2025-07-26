@@ -10,7 +10,7 @@ export class PathFSM {
 	constructor(events: PathFSMEvents = {}) {
 		this.events = events;
 
-		// Define valid state transitions
+		// Defines valid state transitions
 		this.validTransitions = new Map([
 			[PathState.Idle, [PathState.Computing]],
 			[PathState.Computing, [PathState.Following, PathState.Failed]],

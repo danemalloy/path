@@ -84,4 +84,8 @@ const waypoints = await PathfindingUtils.getWaypoints(start, finish);
 
 ## License
 
-ISC
+MIT
+
+## Contributions
+
+Contributions are welcome (and encouraged)! Please feel free to submit a Pull Request. I am newer to rbxts package creation and would appreciate all recommendations!

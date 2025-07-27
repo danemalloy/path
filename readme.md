@@ -21,17 +21,20 @@ npm i @rbxts/path
 ### Basic Pathfinding
 
 ```ts
-import { Path, PathStatus } from "@rbxts/path";
-
 const path = new Path();
-const status = await path.computeAsync(startPosition, endPosition);
 
-if (status === PathStatus.Success) {
-	const waypoints = path.getWaypoints();
-	// Move your humanoid along the waypoints...
+async function computePath() {
+	const status = await path.computeAsync(startPosition, endPosition);
+
+	if (status === PathStatus.Success) {
+		const waypoints = path.getWaypoints();
+		// Move your humanoid along the waypoints...
+	}
+
+	path.destroy();
 }
 
-path.destroy();
+computePath();
 ```
 
 ### Using the Finite State Machine

@@ -2,14 +2,20 @@
   "name": "@rbxts/path",
   "version": "1.0.0",
   "description": "A TypeScript wrapper for Roblox's PathfindingService",
-  "keywords": [],
+  "keywords": [
+    "path",
+    "pathfinding",
+    "rbxts",
+    "pathfindingservice",
+    "state"
+  ],
   "homepage": "https://github.com/danemalloy/rbxts-path#readme",
   "bugs": {
     "url": "https://github.com/danemalloy/rbxts-path/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danemalloy/rbxts-path.git"
+    "url": "https://github.com/danemalloy/path"
   },
   "license": "MIT",
   "author": "Dane Malloy",

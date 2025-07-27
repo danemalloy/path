@@ -24,7 +24,7 @@ npm i @rbxts/path
 const path = new Path();
 
 async function computePath() {
-	const status = await path.computeAsync(start, end);
+	const status = await path.computeAsync(startPos, endPos);
 
 	if (status === PathStatus.Success) {
 		const waypoints = path.getWaypoints();
@@ -33,8 +33,8 @@ async function computePath() {
 			return;
 		}
 		for (const waypoint of waypoints) {
-			const target = waypoint.position;
-			humanoid.MoveTo(target);
+			const targetPos = waypoint.position;
+			humanoid.MoveTo(targetPos);
 
 			const moveStatus = await new Promise<boolean>((resolve) => {
 				const connection = humanoid.MoveToFinished.Connect((reached) => {
@@ -43,7 +43,7 @@ async function computePath() {
 				});
 			});
 			if (!moveStatus) {
-				print(`Failed to move to waypoint at ${target}`);
+				print(`Failed to move to waypoint at ${targetPos}`);
 				return;
 			}
 		}
@@ -51,36 +51,95 @@ async function computePath() {
 
 	path.destroy();
 }
+
+computePath();
 ```
 
 ### Using the Finite State Machine
 
 ```ts
-import { Path, PathState } from "@rbxts/path";
+import { Path, PathState, PathStatus } from "@rbxts/path";
 
 const path = new Path(
 	{},
 	{
-		onStateChanged: (oldState, newState) => print(`State changed: ${oldState} -> ${newState}`),
+		onStateChanged: (oldState, newState) => print(`State changed: ${oldState} → ${newState}`),
 		onWaypointReached: (waypoint, index) => print(`Reached waypoint ${index}`),
-		onPathCompleted: () => print("Path completed!"),
-		onPathFailed: (reason) => print(`Path failed: ${reason}`),
-		onPathBlocked: () => print("Path blocked!"),
+		onPathCompleted: () => print("Path completed successfully!"),
+		onPathFailed: (reason) => warn(`Path failed: ${reason}`),
+		onPathBlocked: () => warn("Path blocked!"),
 	},
 );
 
-await path.computeAsync(start, finish);
-path.startFollowing(humanoid);
+async function computePathWithFSM() {
+	const status = await path.computeAsync(startPos, endPos);
+
+	if (status === PathStatus.Success) {
+		path.startFollowing(humanoid);
+
+		while (path.getState() === PathState.Following) {
+			task.wait(0.1);
+		}
+
+		const finalState = path.getState();
+		if (finalState === PathState.Completed) {
+			print("Successfully reached destination!");
+		} else if (finalState === PathState.Failed) {
+			print("Path following failed");
+		} else if (finalState === PathState.Blocked) {
+			print("Path was blocked");
+		}
+	}
+
+	path.destroy();
+}
+
+async function advancedExample() {
+	await path.computeAsync(startPos, endPos);
+
+	if (path.isSuccess()) {
+		path.startFollowing(humanoid);
+
+		task.wait(3);
+		path.pause();
+		print(`Paused - State: ${path.getState()}`);
+
+		task.wait(2);
+		path.resume(humanoid);
+		print(`Resumed - State: ${path.getState()}`);
+	}
+}
+
+computePathWithFSM();
 ```
 
 ### SmartPath: Automatic Retry
 
 ```ts
-import { SmartPath } from "@rbxts/path";
+import { SmartPath, PathStatus } from "@rbxts/path";
 
-const smartPath = new SmartPath({}, {}, { maxRetries: 5 });
-await smartPath.computeAsync(start, finish);
-smartPath.startFollowing(humanoid);
+async function smartPathExample() {
+	const smartPath = new SmartPath(
+		{},
+		{},
+		{
+			maxRetries: 5,
+			retryDelay: 1,
+			useExponentialBackoff: true,
+		},
+	);
+
+	const status = await smartPath.computeAsync(startPos, endPos);
+
+	if (status === PathStatus.Success) {
+		smartPath.startFollowing(humanoid);
+		print("SmartPath started - will auto-retry if blocked!");
+	} else {
+		print(`Initial path computation failed: ${status}`);
+	}
+}
+
+smartPathExample();
 ```
 
 ### Utilities

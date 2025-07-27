@@ -1,3 +1,4 @@
+// Advanced Path class with automatic retry and recovery mechanisms
 import { Path } from "./path";
 import { PathOptions, PathStatus, PathFSMEvents } from "./types";
 
@@ -9,7 +10,6 @@ export interface SmartPathOptions {
 	shouldRetry?: (reason: PathStatus, attempt: number) => boolean; // return true if the error should trigger a retry
 }
 
-// Advanced Path class with automatic retry and recovery mechanisms
 export class SmartPath extends Path {
 	private retryAttempts: number = 0;
 	private readonly smartOptions: Required<SmartPathOptions>;

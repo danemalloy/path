@@ -24,17 +24,33 @@ npm i @rbxts/path
 const path = new Path();
 
 async function computePath() {
-	const status = await path.computeAsync(startPosition, endPosition);
+	const status = await path.computeAsync(start, end);
 
 	if (status === PathStatus.Success) {
 		const waypoints = path.getWaypoints();
-		// Move your humanoid along the waypoints...
+		if (!waypoints || waypoints.size() === 0) {
+			print("No waypoints found in the computed path.");
+			return;
+		}
+		for (const waypoint of waypoints) {
+			const target = waypoint.position;
+			humanoid.MoveTo(target);
+
+			const moveStatus = await new Promise<boolean>((resolve) => {
+				const connection = humanoid.MoveToFinished.Connect((reached) => {
+					connection.Disconnect();
+					resolve(reached);
+				});
+			});
+			if (!moveStatus) {
+				print(`Failed to move to waypoint at ${target}`);
+				return;
+			}
+		}
 	}
 
 	path.destroy();
 }
-
-computePath();
 ```
 
 ### Using the Finite State Machine

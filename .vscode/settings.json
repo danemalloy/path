@@ -13,5 +13,6 @@
 	"eslint.format.enable": true,
 	"editor.indentSize": "tabSize",
 	"editor.autoIndentOnPaste": true,
-	"editor.tabSize": 2
+	"editor.tabSize": 2,
+	"workbench.startupEditor": "none"
 }

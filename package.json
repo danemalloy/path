@@ -9,9 +9,9 @@
     "pathfindingservice",
     "state"
   ],
-  "homepage": "https://github.com/danemalloy/rbxts-path#readme",
+  "homepage": "https://github.com/danemalloy/path/blob/main/readme.md",
   "bugs": {
-    "url": "https://github.com/danemalloy/rbxts-path/issues"
+    "url": "https://github.com/danemalloy/path/issues"
   },
   "repository": {
     "type": "git",
